@@ -12,7 +12,8 @@ script_dir = os.path.dirname(__file__)
 csv_file_path = os.path.join(script_dir, '..', 'data', 'gender_submission.csv')
 
 # Read the CSV file into a pandas DataFrame
-df = pd.read_csv(csv_file_path)
+# df = pd.read_csv(csv_file_path)
+df = pd.read_csv('data/gender_submission.csv')
 
 # You can now work with the DataFrame 'df'
 print(df.head())
