@@ -1,14 +1,19 @@
 import pandas as pd
 import numpy as np
 import os
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
+from sklearn.preprocessing import OneHotEncoder, LabelEncoder
+from sklearn.compose import ColumnTransformer
+from sklearn.impute import SimpleImputer
 
-print("Hello, world!")
+# print("Hello, world!")
 
 # Construct the relative path to the CSV
-data_path = os.path.join(os.path.dirname(__file__), '..', 'data', 'gender_submission.csv')
+train_path = os.path.join(os.path.dirname(__file__), '..', 'data', 'train.csv')
 
 # Read the CSV file into a DataFrame
-df = pd.read_csv(data_path)
+train = pd.read_csv(train_path)
 
-print(df.head())
+print(train.head())
 
