@@ -13,7 +13,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the entire 'src' directory into the container
 # This will include 'src/code/my_script.py'
-COPY src /app/src
+# COPY src /app/src
+COPY . .
 
 # Set the entry point for your application
 # Ensure the path to your script is correct within the container's /app directory
