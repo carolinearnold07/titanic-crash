@@ -4,14 +4,15 @@ import os
 
 print("Hello, world!")
 
-# Get the current directory of the script
+# Get the directory of the current script
 script_dir = os.path.dirname(__file__)
 
-# Construct the path to the data folder
-data_folder_path = os.path.join(script_dir, '..', 'data')
+# Construct the relative path to the CSV file
+# We need to go up one level from 'code' to 'src', then down into 'data'
+csv_file_path = os.path.join(script_dir, '..', 'data', 'gender_submission.csv')
 
-# Construct the full path to the data file
-data_file_path = os.path.join(data_folder_path, 'gender_submission.csv')
+# Read the CSV file into a pandas DataFrame
+df = pd.read_csv(csv_file_path)
 
-df = pd.read_csv(data_file_path)
-df.head()
+# You can now work with the DataFrame 'df'
+print(df.head())
