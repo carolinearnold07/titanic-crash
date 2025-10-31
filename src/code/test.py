@@ -23,33 +23,41 @@ one_hot_encoder = OneHotEncoder(handle_unknown='ignore', sparse_output=False)
 preprocessor = ColumnTransformer(transformers=[('cat', one_hot_encoder, categorical_features)],
                                  remainder='passthrough')
 
+# Divide training data into predictors vs. response
 X_train = train.drop(['PassengerId', 'Survived', 'Name', 'Ticket', 'Cabin'], axis=1)
 y_train = train['Survived']
 
+# Extract relevant predictors from test data
 X_test = test.drop(['PassengerId', 'Name', 'Ticket', 'Cabin'], axis=1)
 
+# Preprocess data
 X_train_processed = preprocessor.fit_transform(X_train)
 X_test_processed = preprocessor.transform(X_test)
 
+# Impute missing values
 imputer = SimpleImputer(strategy='mean')
-
 X_train_imputed = imputer.fit_transform(X_train_processed)
 X_test_imputed = imputer.fit_transform(X_test_processed)
 
+# Build model
 model = LogisticRegression(solver='liblinear', max_iter=1000)
 model.fit(X_train_imputed, y_train)
 
+# Define predictions on training data
 y_pred = model.predict(X_train_imputed)
 
+# Print accuracy with respect to training set
 print(f'Accuracy with respect to training set: {round(accuracy_score(y_train, y_pred), 2)}')
 
+# Define predictions on test data
 p_ids = np.array(test['PassengerId'])
 y_pred = ['Survived' if pred==1 else 'Did Not Survive' for pred in model.predict(X_test_imputed)]
 
+# Zip PassengerIds and predicted outcomes
 data = {'PassengerId': p_ids, 'Predicted Outcome': y_pred}
-
 df = pd.DataFrame(data)
 
+# Print predicted outcomes
 print('Predicted outcomes on test set:')
 print(df)
 
