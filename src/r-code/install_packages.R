@@ -13,8 +13,10 @@
 #  }
 #}
 
-if (!requireNamespace("pak", quietly = TRUE)) {
-  install.packages("pak")
-}
+#if (!requireNamespace("pak", quietly = TRUE)) {
+#  install.packages("pak")
+#}
 
-pak::pkg_install(c("tidyverse", "caret"))
+#pak::pkg_install(c("tidyverse", "caret"))
+
+install.packages(c("tidyverse", "caret"), Ncpus = 4)
