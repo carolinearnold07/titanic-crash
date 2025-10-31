@@ -1,22 +1,17 @@
-# Use a slim Python base image for smaller image size
-FROM python:3.9-slim-buster
+# Use a lightweight Python base image
+FROM python:3.11-slim
 
 # Set the working directory inside the container
-# WORKDIR /app
+WORKDIR /app
 
-# Copy the requirements.txt file into the container
-# The path is relative to the build context (which is 'my_project' in this case)
+# Copy requirements file first (for efficient caching)
 COPY requirements.txt .
 
-# Install the Python dependencies
+# Install dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy the entire 'src' directory into the container
-# This will include 'src/code/my_script.py'
-# COPY src /app/src
-# COPY src/code/ .
+# Copy the rest of your code
 COPY . .
 
-# Set the entry point for your application
-# Ensure the path to your script is correct within the container's /app directory
-CMD ["python", "src/code/test.py"]
+# Run the Python script
+CMD ["python", "test.py"]
