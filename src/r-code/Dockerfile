@@ -1,5 +1,6 @@
 # Use the official R base image
-FROM rocker/r-base:4.3.2
+# FROM rocker/r-base:4.3.2
+FROM rocker/tidyverse:4.3.2
 
 # Set the working directory inside the container
 WORKDIR /app
