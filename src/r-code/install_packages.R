@@ -3,5 +3,6 @@ packages <- c(
   "caret"
 )
 
-install.packages(setdiff(packages, installed.packages()[, "Package"]),
-                 repos = "https://cloud.r-project.org/")
+install.packages(setdiff(packages, rownames(installed.packages())),
+                 repos = "https://cloud.r-project.org/",
+                 dependencies = TRUE)
