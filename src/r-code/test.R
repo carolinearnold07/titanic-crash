@@ -1,3 +1,6 @@
+install.packages("tidyverse")
+install.packages("caret")
+
 library(tidyverse)
 library(caret)
 
